@@ -1,0 +1,15 @@
+{
+    "apps": [
+      {
+        "name": "react-app",
+        "script": "yarn",
+        "args": "start",
+        "interpreter": "none",
+        "env": {
+          "NODE_ENV": "production",
+          "PORT": 3000
+        }
+      }
+    ]
+  }
+  

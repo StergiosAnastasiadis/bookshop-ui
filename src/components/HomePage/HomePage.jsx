@@ -20,9 +20,7 @@ function HomePage() {
 
     return (
         <>
-            <div>HomePage</div>
-            <button onClick={fetchBook}></button>
-            <div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 15 }}>
                 {books?.map((book) => {
                     return (
                         <Card style={{ width: '18rem' }}>
@@ -32,8 +30,6 @@ function HomePage() {
                                 <Card.Text>
                                     {book.price}
                                 </Card.Text>
-                                {/* <Card.Link href="#">Card Link</Card.Link>
-                          <Card.Link href="#">Another Link</Card.Link> */}
                             </Card.Body>
                         </Card>
                     )

@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import EditBookPage from './components/EditBookPage/EditBookPage';
 import Header from './components/Header/Header';
+import AddBookPage from './components/AddBookPage/AddBookPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           {/* <Route path='/admin-panel' element={<AuthGuard><AdminPage /></AuthGuard>} /> */}
           <Route path='/' element={<HomePage />} />
           <Route path='/edit-book/:id' element={<EditBookPage />} />
+          <Route path='/add-book' element={<AddBookPage />}></Route>
         </Routes>
       </div>
     </div>

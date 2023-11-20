@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Card from 'react-bootstrap/Card';
 import { fetchAllBooks } from '../../services/apiCalls'
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { globalSliceSelector, setBooks } from './globalSlice';
 
 function HomePage() {
-    const [books, setBooks] = useState([])
-
+    const dispatch = useDispatch()
+    const { books } = useSelector(globalSliceSelector)
 
     const fetchBook = async () => {
         const res = await fetchAllBooks()
@@ -13,7 +16,7 @@ function HomePage() {
             alert('Error')
         }
         if (!res.error) {
-            setBooks(res.data)
+            dispatch(setBooks(res.data))
         }
     }
 
@@ -33,7 +36,11 @@ function HomePage() {
                                 <Card.Text>
                                     {book.price}
                                 </Card.Text>
-                                <Button variant="warning" onClick={() => alert(book._id)}>Edit</Button>
+                                <Button variant="warning">
+                                    <Link to={`/edit-book/${book._id}`} relative="path" style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                                        Edit
+                                    </Link>
+                                </Button>
                             </Card.Body>
                         </Card>
                     )

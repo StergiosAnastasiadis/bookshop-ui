@@ -28,9 +28,9 @@ function EditBookPage() {
         if (res.error) {
             return alert('Error')
         }
-        // find index Of
+
         const indexToUpdate = books.findIndex(book => book._id === bookId)
-        const newBooksArray = books.filter((book, i) => i !== indexToUpdate)
+        const newBooksArray = books.map((book, i) => i !== indexToUpdate ? book : res.data)
         dispatch(setBooks(newBooksArray))
         return alert('Success')
     }

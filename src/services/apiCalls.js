@@ -1,10 +1,11 @@
 import axios from "axios"
+const baseURL = process.env.URL
 
 export const fetchAllBooks = async () => {
-    const getAllBooksURL = 'http://localhost:3'
+    const getAllBooksURL = `${baseURL}/api/books`
     return await axios.get(getAllBooksURL)
 }
 
 export const deleteABook = async (bookId) => {
-    return await axios.delete(`http://localhost:30d`)
+    return await axios.delete(`${baseURL}/api/books/:id`)
 }

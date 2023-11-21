@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card';
-import { fetchAllBooks } from '../../services/apiCalls'
+import { deleteABook, fetchAllBooks } from '../../services/apiCalls'
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { globalSliceSelector, setBooks } from './globalSlice';
+import { globalSliceSelector, setBookToDelete, setBooks, setShowDeleteModal } from './globalSlice';
+import DeleteJobModal from '../modals/DeleteJobModal';
 
 function HomePage() {
     const dispatch = useDispatch()
@@ -20,12 +21,18 @@ function HomePage() {
         }
     }
 
+    const handleDelete = async (book) => {
+        dispatch(setBookToDelete(book))
+        dispatch(setShowDeleteModal(true))
+    }
+
     useEffect(() => {
         fetchBook()
     }, [])
 
     return (
         <>
+            <DeleteJobModal />
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 15 }}>
                 {books?.map((book) => {
                     return (
@@ -36,11 +43,16 @@ function HomePage() {
                                 <Card.Text>
                                     {book.price}
                                 </Card.Text>
-                                <Button variant="warning">
-                                    <Link to={`/edit-book/${book._id}`} relative="path" style={{ textDecoration: 'inherit', color: 'inherit' }}>
-                                        Edit
-                                    </Link>
-                                </Button>
+                                <div>
+                                    <Button variant="warning">
+                                        <Link to={`/edit-book/${book._id}`} relative="path" style={{ textDecoration: 'inherit', color: 'inherit' }}>
+                                            Edit
+                                        </Link>
+                                    </Button>
+                                    <Button variant="danger" onClick={() => handleDelete(book)}>
+                                        Delete
+                                    </Button>
+                                </div>
                             </Card.Body>
                         </Card>
                     )

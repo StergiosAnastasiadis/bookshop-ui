@@ -19,7 +19,7 @@ function App() {
           {/* <Route path='/admin-panel' element={<AuthGuard><AdminPage /></AuthGuard>} /> */}
           <Route path='/' element={<HomePage />} />
           <Route path='/edit-book/:id' element={<EditBookPage />} />
-          <Route path='/add-book' element={<AddBookPage />}></Route>
+          <Route path='/add-book' element={<AddBookPage />} />
         </Routes>
       </div>
     </div>

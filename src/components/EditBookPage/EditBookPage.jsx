@@ -38,7 +38,10 @@ function EditBookPage() {
     useEffect(() => {
         if (books) {
             const foundBook = books.find(book => book._id === bookId)
-            setBookForm(foundBook)
+            if(foundBook) {
+
+                setBookForm(foundBook)
+            }
         }
     }, [])
 
